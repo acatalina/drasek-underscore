@@ -23,7 +23,7 @@ _.getIteratee = function getIteratee(method) {
   }
 };
 ```
-
+<span id="identity"></span>
 ### _.identity:
 ``` javascript
 _.identity = function () {
@@ -31,6 +31,7 @@ _.identity = function () {
 };
 ```
 
+<span id="first"></span>
 ### _.first:
 ``` javascript
 _.first = function (arr, n) {
@@ -43,6 +44,8 @@ _.first = function (arr, n) {
   return !n ? arr[0] : arr.slice(0, n);
 };
 ```
+
+<span id="last"></span>
 ### _.last:
 ``` javascript
 _.last = function (arr, n) {
@@ -56,6 +59,7 @@ _.last = function (arr, n) {
 };
 ```
 
+<span id="each"></span>
 ### _.each:
 ``` javascript
 _.each = function(list, iteratee, context) {
@@ -78,6 +82,7 @@ _.each = function(list, iteratee, context) {
 };
 ```
 
+<span id="indexof"></span>
 ### _.indexOf:
 ``` javascript
 _.indexOf = function(arr, val, isSorted) {
@@ -112,6 +117,8 @@ _.indexOf = function(arr, val, isSorted) {
   }
 };
 ```
+
+<span id="filter"></span>
 ### _.filter:
 ``` javascript
 _.filter = function(list, predicate, context) {
@@ -139,6 +146,7 @@ _.filter = function(list, predicate, context) {
 };
 ```
 
+<span id="reject"></span>
 ### _.reject:
 ``` javascript
 _.reject = function(list, predicate, context) {
@@ -166,6 +174,7 @@ _.reject = function(list, predicate, context) {
 };
 ```
 
+<span id="uniq"></span>
 ### _.uniq:
 ``` javascript
 _.uniq = function(arr, isSorted, iteratee) {
@@ -216,6 +225,7 @@ _.uniq = function(arr, isSorted, iteratee) {
 };
 ```
 
+<span id="map"></span>
 ### _.map:
 ``` javascript
 _.map = function(list, iteratee, context) {
@@ -241,6 +251,7 @@ _.map = function(list, iteratee, context) {
 };
 ```
 
+<span id="pluck"></span>
 ### _.pluck:
 ``` javascript
 _.pluck = function(list, prop) {
@@ -256,6 +267,7 @@ _.pluck = function(list, prop) {
   return res;
 };
 ```
+
 <span id="reduce"></span>
 ### _.reduce:
 ``` javascript:
@@ -287,6 +299,7 @@ _.reduce = function(list, iteratee, memo, context) {
 };
 ```
 
+<span id="contains"></span>
 ### _.contains:
 ``` javascript
 _.contains = function(list, value, fromIndex) {
@@ -314,6 +327,7 @@ _.contains = function(list, value, fromIndex) {
 };
 ```
 
+<span id="every"></span>
 ### _.every:
 ``` javascript
 _.every = function(list, predicate, context) {
@@ -343,6 +357,7 @@ _.every = function(list, predicate, context) {
 };
 ```
 
+<span id="some"></span>
 ### _.some:
 ``` javascript
 _.some = function(list, predicate, context) {
@@ -372,6 +387,7 @@ _.some = function(list, predicate, context) {
 };
 ```
 
+<span id="extend"></span>
 ### _.extend:
 ``` javascript
 _.extend = function(destination, source) {
@@ -390,6 +406,7 @@ _.extend = function(destination, source) {
 };
 ```
 
+<span id="defaults"></span>
 ### _.defaults:
 ``` javascript
 _.defaults = function(object, defaults) {
