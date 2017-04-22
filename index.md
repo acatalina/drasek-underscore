@@ -6,23 +6,6 @@ For those who are less familiar with the underscore library, they are a series o
 
 Oh, the website has been made using markdown and Jekyll theme Cayman because...why not? I never tried before. Thank you!
 
-- _.identity
-- _.first
-- _.last
-- _.each
-- _.indexOf
-- _.filter
-- _.reject
-- _.uniq
-- _.map
-- _.pluck
-- _.reduce
-- _.contains
-- _.every
-- _.some
-- _.extend
-- _.defaults
-
 ### _.getIteratee (helper function):
 ``` javascript
 _.getIteratee = function getIteratee(method) {
@@ -273,7 +256,7 @@ _.pluck = function(list, prop) {
   return res;
 };
 ```
-
+<span id="reduce"></span>
 ### _.reduce:
 ``` javascript:
 _.reduce = function(list, iteratee, memo, context) {
