@@ -424,3 +424,254 @@ _.defaults = function(object, defaults) {
   return object;
 };
 ```
+
+<span id="once"></span>
+### _.once:
+``` javascript
+_.once = function(iteratee) {
+  let hasBeenUsed;
+  let res;
+
+  return function() {
+    if (!hasBeenUsed) {
+      hasBeenUsed = true;
+      res = iteratee.apply(this, arguments);
+    }
+    
+    return res;
+  };
+};
+```
+
+<span id="memoize"></span>
+### _.memoize:
+``` javascript
+_.memoize = function(iteratee, hashFunction) {
+  const memo = {};
+
+  const speedy = function() {
+    const args = hashFunction ? 
+      hashFunction.apply(null, arguments) 
+      : 
+      JSON.stringify(arguments[0]);
+    
+    if (!memo[args]) {
+      memo[args] = iteratee.apply(null, arguments);
+    }
+
+    return memo[args];
+  };
+
+  speedy.cache = memo;
+  
+  return speedy;
+};
+```
+
+<span id="delay"></span>
+### _.delay:
+``` javascript
+_.delay = function(iteratee, wait) {
+  const args = Array.from(arguments).slice(2);
+  
+  setTimeout(() => {
+    iteratee.apply(null, args);
+  }, wait);
+};
+```
+
+<span id="shuffle"></span>
+### _.shuffle:
+``` javascript
+_.shuffle = function(list) {
+  if (!Array.isArray(list) && typeof list !== 'object') return [];
+
+  let keys = Object.keys(list);
+  let length = keys.length;
+  let res = Array(length);
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  for (let i = 0; i < length; i++) {
+    let random = getRandomInt(i);
+    if (random !== i) {
+      res[i] = res[random];
+    }
+    res[random] = list[keys[i]];
+  }
+  
+  return res;
+};
+```
+
+<span id="invoke"></span>
+### _.invoke:
+``` javascript
+_.invoke = function(list, methodName) {
+  let args = Array.prototype.slice.call(arguments, 2);
+  
+  return map(list, function(elem) {
+    let func = elem[methodName];
+    return func ? func.apply(elem, args) : elem[null];
+  });
+};
+```
+
+<span id="sortby"></span>
+### _.sortBy:
+``` javascript
+_.sortBy = function(list, sortBy, context) {
+  let iteratee = _.getIteratee(sortBy).bind(context);
+
+  return map(list, function(elem, i, list) {
+    return {
+      elem: elem,
+      computed: iteratee(elem, i, list)
+    };
+  }).sort(function(a, b) {
+    return a.computed > b.computed;
+  }).reduce(function(res, e) {
+    res.push(e.elem);
+    return res;
+  }, []);
+};
+```
+
+<span id="zip"></span>
+### _.zip:
+``` javascript
+_.zip = function() {
+  let args = Array.prototype.slice.call(arguments, 0);
+  let res = [];
+  
+  for (let i = 0; i < args.length; i++) {
+    if (!Array.isArray(args[i])) break;
+
+    let newArray = [];
+
+    for (let j = 0; j < args.length; j++) {
+      newArray.push(args[j][i]);
+    }
+    
+    newArray.length > 0 ? res.push(newArray) : null;
+  }
+
+  return res;
+};
+```
+
+<span id="sortedindex"></span>
+### _.sortedIndex:
+``` javascript
+_.sortedIndex = function(list, value, iteratee, context) {
+    if (!Array.isArray(list)) return 0;
+
+    let prevIndex = 0;
+    let endIndex = list.length;
+    let func = _.getIteratee(iteratee).bind(context);
+
+    while (prevIndex < endIndex) {
+      let midIndex = Math.floor((prevIndex + endIndex) / 2);
+      
+      if (func(list[midIndex]) > func(value)) {
+        endIndex = midIndex;
+      } else {
+        prevIndex = midIndex + 1;
+      }
+    }
+    
+    return endIndex;
+};
+```
+
+<span id="flatten"></span>
+### _.flatten:
+``` javascript
+_.flatten = function(arr, shallow) {  
+  if (!Array.isArray(arr)) return [];
+
+  return reduce(arr, function(res, elem) {
+    if (Array.isArray(elem) && !shallow) {
+      elem = _.flatten(elem);
+    }
+    
+    return res.concat(elem);
+  }, []);
+};
+```
+
+<span id="intersection"></span>
+### _.intersection:
+``` javascript
+_.intersection = function() {
+  let length = arguments[0] ? arguments[0].length : 0;
+  let res = [];
+  
+  for (let i = 0; i < length; i++) {
+    let elem = arguments[0][i];
+    
+    for (let j = 1; j < arguments.length; j++) {
+      let isCommon = contains(arguments[j], elem);
+      let notSeen = isCommon ? !contains(res, elem) : false; 
+      
+      if (isCommon && notSeen) {
+        res.push(elem);
+      }
+    }
+  }
+
+  return res;
+};
+```
+
+<span id="difference"></span>
+### _.difference:
+``` javascript
+_.difference = function(arr) {
+  let length = arr ? arr.length : 0;
+  let res = [];
+  
+  for (let i = 0; i < length; i++) {
+    let elem = arr[i];
+    
+    for (let j = 1; j < arguments.length; j++) {
+      let isNotCommon = !contains(arguments[j], elem);
+      
+      if (isNotCommon) {
+        res.push(elem);
+      }
+    }
+  }
+
+  return res;
+};
+```
+
+<span id="throttle"></span>
+### _.throttle (unfinished):
+``` javascript
+_.throttle = function(iteratee, wait, options) {
+  let readyToUse = true;
+  let reCalled;
+  let res;
+
+  return function() {
+    if (readyToUse) {
+      readyToUse = false;
+      res = iteratee.apply(this, arguments);
+      setTimeout(() => {
+        readyToUse = true;
+        if (reCalled) {
+          res = iteratee.apply(this, arguments);
+          reCalled = false;
+        }
+      }, wait);
+    } else {
+      reCalled = true;
+    }
+    
+    return res;
+  };
+};
