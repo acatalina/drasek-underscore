@@ -5,7 +5,7 @@ Hello! My name is Alvaro and I wanted to share with you various underscore metho
 </p>
 
 <p style="text-align: justify;">
-For those who are less familiar with the underscore library, they are a series of helpful and clever methods that you can find on [underscore](http://underscorejs.org).
+For those who are less familiar with the underscore library, they are a series of helpful and clever methods that you can find on <a href="http://underscorejs.org">underscore</a>.
 </p>
 
 <p style="text-align: justify;">
