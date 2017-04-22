@@ -1,10 +1,12 @@
 # My own implementation of underscore library
 
+<p style="text-align: justify;">
 Hello! My name is Alvaro and I wanted to share with you various underscore methods (listed below) I implemented while learning javascript. Pretty sure they could do with further tinkering, although not sure how many times I have changed them already!
 
 For those who are less familiar with the underscore library, they are a series of helpful and clever methods that you can find on [underscore](http://underscorejs.org).
 
-Oh, the website has been made using markdown and Jekyll theme Cayman because...why not? I never tried before. Thank you!
+Oh, the website has been made using markdown and the Minimalist Jekyll theme because...why not? I never tried before. Thank you!
+</p>
 
 ### _.getIteratee (helper function):
 ``` javascript
