@@ -1,7 +1,7 @@
 # My own implementation of underscore library
 
 <p style="text-align: justify;">
-Hello! My name is Alvaro and I wanted to share with you various underscore methods (listed below) I implemented while learning javascript. Pretty sure they could do with further tinkering, although not sure how many times I have changed them already!
+Hello! My name is Alvaro and I wanted to share with you various underscore methods (listed below) I implemented while learning javascript. I have loaded the file into this website so if you want to try them, just open the console and they should be available :)
 </p>
 
 <p style="text-align: justify;">
@@ -9,7 +9,7 @@ For those who are less familiar with the underscore library, they are a series o
 </p>
 
 <p style="text-align: justify;">
-Oh, the website has been made using markdown and the Minimalist Jekyll theme because...why not? I never tried before. Thank you!
+Oh, the website has been made using markdown and the Minimalist Jekyll theme because...why not? I never tried before. Also because I wanted people to focus on the methods instead of on the webiste. Thank you!
 </p>
 
 ### _.getIteratee (helper function):
@@ -656,28 +656,35 @@ _.difference = function(arr) {
 ```
 
 <span id="throttle"></span>
-### _.throttle (unfinished):
+### _.throttle:
 ``` javascript
-_.throttle = function(iteratee, wait, options) {
+_.throttle = function (iteratee, wait, options) {
+  const defaultOptions = {leading: true, trailing: true};
   let readyToUse = true;
   let reCalled;
   let res;
 
-  return function() {
+  options = Object.assign(defaultOptions, options);
+
+  return function () {
     if (readyToUse) {
       readyToUse = false;
-      res = iteratee.apply(this, arguments);
+
+      if (options.leading === true) {
+        res = iteratee.apply(this, arguments);
+      }
+
       setTimeout(() => {
         readyToUse = true;
-        if (reCalled) {
+        if (reCalled || options.leading === false) {
           res = iteratee.apply(this, arguments);
           reCalled = false;
         }
       }, wait);
     } else {
-      reCalled = true;
+      reCalled = options.trailing === false ? false : true;
     }
-    
+
     return res;
   };
 };

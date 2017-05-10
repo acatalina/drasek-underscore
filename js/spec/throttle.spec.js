@@ -32,4 +32,27 @@ describe('_.throttle', function () {
       done();
     }, 50);
   });
+
+  it('accepts leading option to dissable leading-edge call', function (done) {
+    let spy = sinon.spy();
+    let tester = _.throttle(spy, 50, {leading: false});
+    tester();
+    expect(spy.calledOnce).to.be.false;
+    setTimeout(function () {
+      expect(spy.calledOnce).to.be.true;
+      done();
+    }, 50);
+  });
+
+  it('accepts trailing options to dissable trailing-edge call', function (done) {
+    let spy = sinon.spy();
+    let tester = _.throttle(spy, 50, {trailing: false});
+    tester();
+    expect(spy.calledOnce).to.be.true;
+    tester();
+    setTimeout(function () {
+      expect(spy.calledOnce).to.be.true;
+      done();
+    }, 60);
+  });
 });

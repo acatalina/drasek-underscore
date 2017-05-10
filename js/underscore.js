@@ -533,23 +533,30 @@ _.difference = function (arr) {
 };
 
 _.throttle = function (iteratee, wait, options) {
+  const defaultOptions = {leading: true, trailing: true};
   let readyToUse = true;
   let reCalled;
   let res;
 
+  options = Object.assign(defaultOptions, options);
+
   return function () {
     if (readyToUse) {
       readyToUse = false;
-      res = iteratee.apply(this, arguments);
+
+      if (options.leading === true) {
+        res = iteratee.apply(this, arguments);
+      }
+
       setTimeout(() => {
         readyToUse = true;
-        if (reCalled) {
+        if (reCalled || options.leading === false) {
           res = iteratee.apply(this, arguments);
           reCalled = false;
         }
       }, wait);
     } else {
-      reCalled = true;
+      reCalled = options.trailing === false ? false : true;
     }
 
     return res;
