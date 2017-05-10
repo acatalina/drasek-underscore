@@ -19,7 +19,7 @@ describe('_.filter', function () {
     let spy = sinon.spy();
     _.filter([1, 2, 3], spy);
     expect(spy.callCount).to.eql(3);
-    
+
     spy = sinon.spy();
     _.filter({1: 1, 2: 2, 3: 3}, spy);
     expect(spy.callCount).to.eql(3);
@@ -29,7 +29,7 @@ describe('_.filter', function () {
     const predicate = function (n) { return n < 3; };
     let actual = _.filter([1, 2, 3], predicate);
     expect(actual).to.eql([1, 2]);
-    
+
     actual = _.filter({one: 1, two: 2, three: 3}, predicate);
     expect(actual).to.eql([1, 2]);
   });

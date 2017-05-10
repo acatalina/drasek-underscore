@@ -16,7 +16,7 @@ describe('_.invoke', function () {
   });
 
   it('invokes the method given with the arguments provided', function () {
-    let iteratee = function (e) { return e > 2;};
+    let iteratee = function (e) { return e > 2; };
     let actual = _.invoke([[3, 2, 1], [4, 3, 2]], 'filter', iteratee);
     let expected = [[3], [4, 3]];
     expect(actual).to.eql(expected);

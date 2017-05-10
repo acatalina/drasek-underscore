@@ -13,13 +13,13 @@ describe('_.shuffle', function () {
     expect(_.shuffle()).to.eql([]);
     expect(_.shuffle(2)).to.eql([]);
     expect(_.shuffle(NaN)).to.eql([]);
-  });  
+  });
 
   it('shuffles the content of an array', function () {
     let input = range(100);
     let res = _.shuffle(input);
     let res2 = _.shuffle(input);
-    
+
     let firstShuffle = res[0] + res[1];
     let secondShuffle = res2[0] + res2[1];
     expect(firstShuffle).to.not.equal(secondShuffle);

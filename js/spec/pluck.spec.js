@@ -16,10 +16,10 @@ describe('_.pluck', function () {
 
   it('extracts property values', function () {
     let actual = _.pluck([
-      {num: 1, c: 0}, 
-      {num: 2, c: 3}, 
+      {num: 1, c: 0},
+      {num: 2, c: 3},
       {num: 3, c: 1}
-      ], 'num'); 
+    ], 'num');
     let expected = [1, 2, 3];
     expect(actual).to.eql(expected);
   });

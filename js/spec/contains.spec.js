@@ -3,8 +3,8 @@ const path = require('path');
 const {expect} = require('chai');
 const {range} = require('underscore');
 const _ = require(path.join(__dirname, '..', 'underscore'));
- 
-describe('_.contains', function () {    
+
+describe('_.contains', function () {
   it('is a function', function () {
     expect(_.contains).to.be.a('function');
   });
@@ -29,10 +29,10 @@ describe('_.contains', function () {
     let expected = true;
     let actual = _.contains([1, 2, 3], 3);
     expect(actual).to.eql(expected);
-    
+
     expected = true;
     actual = _.contains({1: 2, 3: 4}, 2);
-    expect(actual).to.eql(expected);    
+    expect(actual).to.eql(expected);
   });
 
   it('allows a fromIndex value for arrays', function () {
@@ -57,7 +57,7 @@ describe('_.contains', function () {
     _.contains(data, 1000000);
     end = Date.now();
     lastElem = end - start;
-    
+
     expect(firstElem).to.be.lessThan(lastElem);
   });
 });

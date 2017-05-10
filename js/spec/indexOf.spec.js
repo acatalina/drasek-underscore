@@ -15,12 +15,12 @@ describe('indexOf', function () {
     expect(_.indexOf(NaN)).to.equal(-1);
     expect(_.indexOf([1, 2], true)).to.equal(-1);
   });
-  
+
   it('returns the correct index value', function () {
     let actual = _.indexOf([1, 2, 3], 1);
     let expected = 0;
     expect(actual).to.be.equal(expected);
-    
+
     actual = _.indexOf([1, 2, 4, 5, 6, 7, 8, 9, 4, 3, 1, 2, 2, 3], 4);
     expected = 2;
     expect(actual).to.be.equal(expected);
@@ -36,7 +36,7 @@ describe('indexOf', function () {
     let actual = _.indexOf([1, 2, 3], 1);
     let expected = 0;
     expect(actual).to.be.equal(expected);
-    
+
     actual = _.indexOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], 4, true);
     expected = 3;
     expect(actual).to.be.equal(expected);
@@ -46,7 +46,7 @@ describe('indexOf', function () {
     let actual = _.indexOf([1, 2, 3], 4);
     let expected = -1;
     expect(actual).to.be.equal(expected);
-    
+
     actual = _.indexOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], -1, true);
     expected = -1;
     expect(actual).to.be.equal(expected);
@@ -64,7 +64,7 @@ describe('indexOf', function () {
     _.indexOf(data, 999999, true);
     end = Date.now();
     binaryTime = end - start;
-    
+
     expect(binaryTime).to.be.lessThan(selectionTime);
   });
 

@@ -9,7 +9,7 @@ describe('_.getIteratee', function () {
   });
 
   it('returns the same function if a function is given', function () {
-    let iteratee = function (e) {return e;};
+    let iteratee = function (e) { return e; };
     expect(_.getIteratee(iteratee)).to.equal(iteratee);
   });
 
@@ -25,7 +25,7 @@ describe('_.getIteratee', function () {
   it('returns a function that returns what is given when method is not a function or a string', function () {
     let iteratee = null;
     let actual = _.getIteratee(iteratee)(undefined);
-    let expected = undefined;
+    let expected;
     expect(actual).to.equal(expected);
   });
 });

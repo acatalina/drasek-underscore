@@ -19,7 +19,7 @@ describe('_.map', function () {
     let spy = sinon.spy();
     _.map([1, 2, 3], spy);
     expect(spy.callCount).to.eql(3);
-    
+
     spy = sinon.spy();
     _.map({1: 1, 2: 2, 3: 3}, spy);
     expect(spy.callCount).to.eql(3);
@@ -30,7 +30,7 @@ describe('_.map', function () {
     let actual = _.map([1, 2, 3], iteratee);
     let expected = [2, 3, 4];
     expect(actual).to.eql(expected);
-    
+
     actual = _.map({one: 1, two: 2, three: 3}, iteratee);
     expected = [2, 3, 4];
     expect(actual).to.eql(expected);

@@ -8,7 +8,7 @@ _.getIteratee = function getIteratee (method) {
       return function (elem) {
         return elem[method];
       };
-    default: 
+    default:
       return function (elem) {
         return elem;
       };
@@ -25,7 +25,7 @@ _.first = function (arr, n) {
     if (n) { n = 0; } else { return []; }
   }
   if (Array.isArray(n)) n = n[0] || 1;
-  
+
   return !n ? arr[0] : arr.slice(0, n);
 };
 
@@ -42,7 +42,7 @@ _.last = function (arr, n) {
 _.each = function (list, iteratee, context) {
   let func = _.getIteratee(iteratee).bind(context);
   let i = 0;
-  
+
   if (Array.isArray(list)) {
     for (i; i < list.length; i++) {
       func(list[i], i, list);
@@ -65,7 +65,7 @@ _.filter = function (list, predicate, context) {
 
   if (Array.isArray(list)) {
     for (i; i < list.length; i++) {
-      if (iteratee(list[i], i , list)) {
+      if (iteratee(list[i], i, list)) {
         res.push(list[i]);
       }
     }
@@ -89,7 +89,7 @@ _.reject = function (list, predicate, context) {
 
   if (Array.isArray(list)) {
     for (i; i < list.length; i++) {
-      if (!iteratee(list[i], i , list)) {
+      if (!iteratee(list[i], i, list)) {
         res.push(list[i]);
       }
     }
@@ -115,7 +115,7 @@ _.uniq = function (arr, isSorted, iteratee) {
   let res = [];
   let seen = isSorted ? undefined : [];
   let hasBeenSeen = isSorted ? hasBeenSeenSorted : hasBeenSeenUnsorted;
-  
+
   function hasBeenSeenSorted (val, i, arr) {
     val = getComparable(val, i, arr);
 
@@ -141,7 +141,7 @@ _.uniq = function (arr, isSorted, iteratee) {
   function getComparable (val, i, arr) {
     return iteratee ? iteratee(val, i, arr) : val;
   }
-  
+
   if (Array.isArray(arr)) {
     for (let i = 0; i < arr.length; i++) {
       if (!hasBeenSeen(arr[i], i, arr)) {
@@ -160,7 +160,7 @@ _.map = function (list, iteratee, context) {
 
   if (Array.isArray(list)) {
     for (i; i < list.length; i++) {
-      let transformed = func(list[i], i , list);
+      let transformed = func(list[i], i, list);
       res.push(transformed);
     }
   } else if (typeof list === 'object') {
@@ -171,7 +171,7 @@ _.map = function (list, iteratee, context) {
       res.push(transformed);
     }
   }
-  
+
   return res;
 };
 
@@ -198,15 +198,15 @@ _.reduce = function (list, iteratee, memo, context) {
     }
 
     for (i; i < list.length; i++) {
-      memo = func(memo, list[i], i, list);  
+      memo = func(memo, list[i], i, list);
     }
   } else if (typeof list === 'object') {
     let keys = Object.keys(list);
-    
+
     if (memo === undefined) {
       memo = list[keys[i]];
     }
-    
+
     for (i; i < keys.length; i++) {
       memo = func(memo, list[keys[i]], i, list);
     }
@@ -235,7 +235,7 @@ _.contains = function (list, value, fromIndex) {
       }
     }
   }
-  
+
   return false;
 };
 
@@ -297,7 +297,7 @@ _.extend = function (destination, source) {
   for (let i = 1; i < arguments.length; i++) {
     source = arguments[i];
     keys = Object.keys(source);
-    
+
     for (let j = 0; j < keys.length; j++) {
       destination[keys[j]] = source[keys[j]];
     }
@@ -310,7 +310,7 @@ _.defaults = function (object, defaults) {
   for (let i = 1; i < arguments.length; i++) {
     defaults = arguments[i];
     let keys = Object.keys(defaults);
-    
+
     for (let j = 0; j < keys.length; j++) {
       if (!object[keys[j]]) {
         object[keys] = defaults[keys];
@@ -331,18 +331,18 @@ _.indexOf = function (arr, val, isSorted) {
 
     while (prevIndex < endIndex && arr[midIndex] !== val) {
       midIndex = Math.floor((prevIndex + endIndex) / 2);
-      
+
       if (arr[midIndex] > val) {
         endIndex = midIndex;
       } else {
         prevIndex = midIndex + 1;
       }
     }
-    
+
     return arr[midIndex] === val ? midIndex : -1;
   } else {
     isSorted = isSorted || 0;
-    
+
     for (let i = isSorted; i < arr.length; i++) {
       if (arr[i] === val) {
         return i;
@@ -362,7 +362,7 @@ _.once = function (iteratee) {
       hasBeenUsed = true;
       res = iteratee.apply(this, arguments);
     }
-    
+
     return res;
   };
 };
@@ -371,11 +371,10 @@ _.memoize = function (iteratee, hashFunction) {
   const memo = {};
 
   const speedy = function () {
-    const args = hashFunction ? 
-      hashFunction.apply(null, arguments) 
-      : 
-      JSON.stringify(arguments[0]);
-    
+    const args = hashFunction
+      ? hashFunction.apply(null, arguments)
+      : JSON.stringify(arguments[0]);
+
     if (!memo[args]) {
       memo[args] = iteratee.apply(null, arguments);
     }
@@ -384,13 +383,13 @@ _.memoize = function (iteratee, hashFunction) {
   };
 
   speedy.cache = memo;
-  
+
   return speedy;
 };
 
 _.delay = function (iteratee, wait) {
   const args = Array.from(arguments).slice(2);
-  
+
   setTimeout(() => {
     iteratee.apply(null, args);
   }, wait);
@@ -414,13 +413,13 @@ _.shuffle = function (list) {
     }
     res[random] = list[keys[i]];
   }
-  
+
   return res;
 };
 
 _.invoke = function (list, methodName) {
   let args = Array.prototype.slice.call(arguments, 2);
-  
+
   return _.map(list, function (elem) {
     let func = elem[methodName];
     return func ? func.apply(elem, args) : elem[null];
@@ -446,7 +445,7 @@ _.sortBy = function (list, sortBy, context) {
 _.zip = function () {
   let args = Array.prototype.slice.call(arguments, 0);
   let res = [];
-  
+
   for (let i = 0; i < args.length; i++) {
     if (!Array.isArray(args[i])) break;
 
@@ -455,7 +454,7 @@ _.zip = function () {
     for (let j = 0; j < args.length; j++) {
       newArray.push(args[j][i]);
     }
-    
+
     newArray.length > 0 ? res.push(newArray) : null;
   }
 
@@ -463,33 +462,33 @@ _.zip = function () {
 };
 
 _.sortedIndex = function (list, value, iteratee, context) {
-    if (!Array.isArray(list)) return 0;
+  if (!Array.isArray(list)) return 0;
 
-    let prevIndex = 0;
-    let endIndex = list.length;
-    let func = _.getIteratee(iteratee).bind(context);
+  let prevIndex = 0;
+  let endIndex = list.length;
+  let func = _.getIteratee(iteratee).bind(context);
 
-    while (prevIndex < endIndex) {
-      let midIndex = Math.floor((prevIndex + endIndex) / 2);
-      
-      if (func(list[midIndex]) > func(value)) {
-        endIndex = midIndex;
-      } else {
-        prevIndex = midIndex + 1;
-      }
+  while (prevIndex < endIndex) {
+    let midIndex = Math.floor((prevIndex + endIndex) / 2);
+
+    if (func(list[midIndex]) > func(value)) {
+      endIndex = midIndex;
+    } else {
+      prevIndex = midIndex + 1;
     }
-    
-    return endIndex;
+  }
+
+  return endIndex;
 };
 
-_.flatten = function (arr, shallow) {  
+_.flatten = function (arr, shallow) {
   if (!Array.isArray(arr)) return [];
 
   return _.reduce(arr, function (res, elem) {
     if (Array.isArray(elem) && !shallow) {
       elem = _.flatten(elem);
     }
-    
+
     return res.concat(elem);
   }, []);
 };
@@ -497,14 +496,14 @@ _.flatten = function (arr, shallow) {
 _.intersection = function () {
   let length = arguments[0] ? arguments[0].length : 0;
   let res = [];
-  
+
   for (let i = 0; i < length; i++) {
     let elem = arguments[0][i];
-    
+
     for (let j = 1; j < arguments.length; j++) {
       let isCommon = _.contains(arguments[j], elem);
-      let notSeen = isCommon ? !_.contains(res, elem) : false; 
-      
+      let notSeen = isCommon ? !_.contains(res, elem) : false;
+
       if (isCommon && notSeen) {
         res.push(elem);
       }
@@ -517,13 +516,13 @@ _.intersection = function () {
 _.difference = function (arr) {
   let length = arr ? arr.length : 0;
   let res = [];
-  
+
   for (let i = 0; i < length; i++) {
     let elem = arr[i];
-    
+
     for (let j = 1; j < arguments.length; j++) {
       let isNotCommon = !_.contains(arguments[j], elem);
-      
+
       if (isNotCommon) {
         res.push(elem);
       }
@@ -552,7 +551,7 @@ _.throttle = function (iteratee, wait, options) {
     } else {
       reCalled = true;
     }
-    
+
     return res;
   };
 };

@@ -3,8 +3,8 @@ const path = require('path');
 const {expect} = require('chai');
 const _ = require(path.join(__dirname, '..', 'underscore'));
 const sinon = require('sinon');
-  
-describe('_.every', function () {    
+
+describe('_.every', function () {
   it('is a function', function () {
     expect(_.every).to.be.a('function');
   });

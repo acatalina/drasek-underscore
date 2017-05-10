@@ -4,7 +4,7 @@ const {expect} = require('chai');
 const _ = require(path.join(__dirname, '..', 'underscore'));
 const sinon = require('sinon');
 
-describe('_.some', function () {    
+describe('_.some', function () {
   it('is a function', function () {
     expect(_.some).to.be.a('function');
   });
@@ -21,7 +21,7 @@ describe('_.some', function () {
     let actual = _.some([1, 2, 3], spy);
     expect(actual).to.eql(expected);
     expect(spy.callCount).to.eql(1);
-    
+
     spy = sinon.spy(function (n) { return n < 3; });
     actual = _.some({n: 1, b: 2, c: 2}, spy);
     expect(actual).to.eql(expected);

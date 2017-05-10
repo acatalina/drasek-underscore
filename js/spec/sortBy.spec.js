@@ -9,14 +9,14 @@ describe('_.sortBy', function () {
   });
 
   it('sorts an array in ascending order according to the result of passing every element through an iteratee', function () {
-    let iteratee =  function (num) {return Math.sin(num);};
+    let iteratee = function (num) { return Math.sin(num); };
     let actual = _.sortBy([1, 2, 3, 4, 5, 6], iteratee);
     let expected = [5, 4, 6, 3, 1, 2];
     expect(actual).to.eql(expected);
   });
 
   it('sorts an object in ascending order according to the result of passing every element through an iteratee', function () {
-    let iteratee =  function (num) {return Math.sin(num);};
+    let iteratee = function (num) { return Math.sin(num); };
     let actual = _.sortBy({1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6}, iteratee);
     let expected = [5, 4, 6, 3, 1, 2];
     expect(actual).to.eql(expected);

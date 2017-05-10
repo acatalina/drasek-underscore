@@ -23,10 +23,10 @@ describe('_.throttle', function () {
     let tester = _.throttle(spy, 50);
     tester();
     expect(spy.calledOnce).to.be.true;
-    
+
     tester();
     expect(spy.calledOnce).to.be.true;
-    
+
     setTimeout(function () {
       expect(spy.callCount).to.equal(2);
       done();

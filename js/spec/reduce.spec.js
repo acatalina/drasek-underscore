@@ -24,9 +24,9 @@ describe('_.reduce', function () {
     _.reduce({1: 1, 2: 1, 3: 1}, spy);
     expect(spy.callCount).to.eql(3);
   });
-  
+
   it('returns the modified value according to the iteratee given', function () {
-    let iteratee = function (acc, n) { 
+    let iteratee = function (acc, n) {
       acc.push(n + 2);
       return acc;
     };
@@ -34,16 +34,16 @@ describe('_.reduce', function () {
     let actual = _.reduce([1, 2, 3], iteratee, []);
     let expected = [3, 4, 5];
     expect(actual).to.eql(expected);
-    
-    iteratee = function (acc, n) { 
-      acc[n] = 1; 
-      return acc; 
+
+    iteratee = function (acc, n) {
+      acc[n] = 1;
+      return acc;
     };
-    
+
     actual = _.reduce([1, 2, 3], iteratee, {});
     expected = {
-      1: 1, 
-      2: 1, 
+      1: 1,
+      2: 1,
       3: 1
     };
     expect(actual).to.eql(expected);
@@ -52,12 +52,12 @@ describe('_.reduce', function () {
   it('takes the first element as a memo when no memo is given', function () {
     let actual;
     let expected = 1;
-    _.reduce([1, 2, 3], ((memo, elem) => { return actual = memo; }));
+    _.reduce([1, 2, 3], (memo) => { return actual = memo; });
     expect(actual).to.equal(expected);
-    
+
     actual;
     expected = 2;
-    _.reduce({1: 2, 3: 4}, ((memo, elem) => { return actual = memo; }));
+    _.reduce({1: 2, 3: 4}, (memo) => { return actual = memo; });
     expect(actual).to.equal(expected);
   });
 

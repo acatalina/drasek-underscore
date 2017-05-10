@@ -16,7 +16,7 @@ describe('_.sortedIndex', function () {
 
   it('handles an array of objects with a third value string as a parameter', function () {
     let input = [{name: 'moe', age: 40}, {name: 'curly', age: 60}];
-    
+
     let actual = _.sortedIndex(input, {name: 'larry', age: 50}, 'age');
     let expected = 1;
     expect(actual).to.equal(expected);

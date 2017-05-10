@@ -19,7 +19,7 @@ describe('_.reject', function () {
     let spy = sinon.spy();
     _.reject([1, 2, 3], spy);
     expect(spy.callCount).to.eql(3);
-    
+
     spy = sinon.spy();
     _.reject({1: 1, 2: 2, 3: 3}, spy);
     expect(spy.callCount).to.eql(3);
@@ -29,7 +29,7 @@ describe('_.reject', function () {
     let predicate = function (n) { return n < 3; };
     let reject = _.reject([1, 2, 3], predicate);
     expect(reject).to.eql([3]);
-    
+
     reject = _.reject({1: 1, 2: 2, 3: 3}, predicate);
     expect(reject).to.eql([3]);
   });

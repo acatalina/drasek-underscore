@@ -12,7 +12,7 @@ describe('_.identity', function () {
     let expected = [1, 2, 3];
     let actual = _.identity(expected);
     expect(actual).to.equal(expected);
-    
+
     actual = _.identity();
     expected = undefined;
     expect(actual).to.eql(expected);

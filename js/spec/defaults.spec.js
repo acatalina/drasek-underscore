@@ -3,7 +3,7 @@ const path = require('path');
 const {expect} = require('chai');
 const _ = require(path.join(__dirname, '..', 'underscore'));
 
-describe('_.defaults', function () {    
+describe('_.defaults', function () {
   it('is a function', function () {
     expect(_.defaults).to.be.a('function');
   });
@@ -24,7 +24,7 @@ describe('_.defaults', function () {
     let actual = _.defaults({name: 'foo'}, {surname: 'bar'});
     let expected = {name: 'foo', surname: 'bar'};
     expect(actual).to.eql(expected);
-    
+
     actual = _.defaults({name: undefined}, {name: 'foo'});
     expected = {name: 'foo'};
     expect(actual).to.eql(expected);

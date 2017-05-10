@@ -17,7 +17,7 @@ describe('_.last', function () {
     var actual = _.last([1, 2, 3]);
     var expected = 3;
     expect(actual).to.eql(expected);
-    
+
     actual = _.last([{name: 'first'}, {name: 'second'}]);
     expected = {name: 'second'};
     expect(actual).to.eql(expected);
@@ -27,7 +27,7 @@ describe('_.last', function () {
     let actual = _.last([1, 2, 3], true);
     let expected = 3;
     expect(actual).to.eql(expected);
-    
+
     actual = _.last([1, 2, 3], false);
     expected = [];
     expect(actual).to.eql(expected);
@@ -37,7 +37,7 @@ describe('_.last', function () {
     var actual = _.last([1, 2, 3], 2);
     var expected = [2, 3];
     expect(actual).to.eql(expected);
-    
+
     actual = _.last([{name: 'first'}, {name: 'second'}, {name: 'third'}], 2);
     expected = [{name: 'second'}, {name: 'third'}];
     expect(actual).to.eql(expected);
